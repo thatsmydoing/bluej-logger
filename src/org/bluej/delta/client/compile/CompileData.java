@@ -85,9 +85,18 @@ public class CompileData extends EventData
                             + ce.getEvent());
         }
 
-        int[] errorPosition = ce.getErrorPosition();
+        int columnNumber;
+        try {
+            ce.getClass().getMethod("getErrorPosition", null);
+            int[] errorPosition = ce.getErrorPosition();
+            columnNumber = errorPosition[1];
+        }
+        catch (NoSuchMethodException e) {
+            columnNumber = -1;
+        }
 
-        message = new CompileMessage(type, ce.getErrorMessage(), errorPosition[0] /* line */, errorPosition[1] /* column */);
+
+        message = new CompileMessage(type, ce.getErrorMessage(), ce.getErrorLineNumber(), columnNumber);
     }
 
     /**
