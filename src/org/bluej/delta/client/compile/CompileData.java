@@ -38,8 +38,8 @@ public class CompileData extends EventData
     private File file;
 
     /** Compiler message (warnings and errors) */
-    private CompileMessage message = new CompileMessage("", "", -1);;
-    
+    private CompileMessage message = new CompileMessage("", "", -1, -1);;
+
     /** All the data in one list of key/value pairs. */
     private List keysAndValues = new LinkedList();
 
@@ -85,14 +85,16 @@ public class CompileData extends EventData
                             + ce.getEvent());
         }
 
-        message = new CompileMessage(type, ce.getErrorMessage(), ce.getErrorLineNumber());
+        int[] errorPosition = ce.getErrorPosition();
+
+        message = new CompileMessage(type, ce.getErrorMessage(), errorPosition[0] /* line */, errorPosition[1] /* column */);
     }
 
     /**
      * Signals the ending of an CompileData. One CompileData can contain compile information
      * for only one file. BlueJ (2.1.3), will always generate one
      * COMPILE_DONE_EVENT or COMPILE_FAILED_EVENT per file.
-     * 
+     *
      * @param ce The compile event. Should be of type COMPILE_DONE_EVENT or
      *            COMPILE_FAILED_EVENT.
      */
@@ -184,6 +186,7 @@ public class CompileData extends EventData
         keysAndValues.add(new Pair("MSG_TYPE", message.getType()));
         keysAndValues.add(new Pair("MSG_MESSAGE", message.getMessage()));
         keysAndValues.add(new Pair("MSG_LINE_NUMBER", message.getLineNumber()));
+        keysAndValues.add(new Pair("MSG_COLUMN_NUMBER", message.getColumnNumber()));
 
         keysAndValues.add(new Pair("COMPILES_PER_FILE", (Integer) perFileCompileCount.get(file.getName())));
         keysAndValues.add(new Pair("TOTAL_COMPILES", totalCompiles));
