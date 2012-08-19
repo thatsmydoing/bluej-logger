@@ -86,9 +86,6 @@ public class InvocationData extends EventData
             case InvocationEvent.EXCEPTION_EXIT :
                 invocationStatus = "EXCEPTION_EXIT";
                 break;
-            case InvocationEvent.FORCED_EXIT :
-                invocationStatus = "FORCED__EXIT";
-                break;
             case InvocationEvent.NORMAL_EXIT :
                 invocationStatus = "NORMAL_EXIT";
                 break;
