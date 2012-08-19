@@ -48,7 +48,7 @@ public class DeltaMain extends Extension implements PackageListener
      * File where the project id is stored.
      */
     private static final String PROJECT_PROP_FILE = "projectid.bjlog";
-    public static String VERSION = "20081219";
+    public static String VERSION = "20120819";
     private String hostname;
     private String ipAddress;
 
