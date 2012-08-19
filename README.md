@@ -11,7 +11,7 @@ The original source code as well as the old server code may be found in the
 
 [bluej]: http://www.bluej.org
 [browser]: https://github.com/thatsmydoing/bluej-browser
-[oldsrc]: code.google.com/p/novice-programming-behavior/
+[oldsrc]: http://code.google.com/p/novice-programming-behavior/
 
 Requirements
 =======
